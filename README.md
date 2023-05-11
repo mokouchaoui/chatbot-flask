@@ -24,7 +24,10 @@ export OPENAI_API_KEY="your_api_key_here"
 
 5. Open your web browser and go to `http://localhost:5000` to use the chatbot.
 
-6 . Type /help to see the instructions or type your prompt
+6 . Type ```/help ```to see the instructions or type your prompt.
+
+![Alt text](Screenshot from 2023-05-11 16-46-04.png  "Bot Screen")
+
 
 ## Configuration
 
