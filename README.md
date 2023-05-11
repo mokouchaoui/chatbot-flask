@@ -5,24 +5,26 @@ This is a simple Flask-based chatbot that uses the OpenAI GPT language model to 
 ## Installation and Usage
 
 1. Clone the repository:
-
-git clone [https://github.com/yourusername/flask-chatbot.git](https://github.com/mokouchaoui/chatbot-flask)
-
+```
+git clone https://github.com/mokouchaoui/chatbot-flask.git
+```
 
 2. Install the required packages:
-
+```shell
 pip install -r requirements.txt
-
+```
 
 3. Set your OpenAI API key as an environment variable:
-
+```
 export OPENAI_API_KEY="your_api_key_here"
-
+```
 
 4. Run the application:
 
 
 5. Open your web browser and go to `http://localhost:5000` to use the chatbot.
+
+6 . Type /help to see the instructions or type your prompt
 
 ## Configuration
 
