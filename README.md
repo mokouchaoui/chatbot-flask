@@ -26,7 +26,7 @@ export OPENAI_API_KEY="your_api_key_here"
 
 6 . Type ```/help ```to see the instructions or type your prompt.
 
-![Alt text](Screenshot from 2023-05-11 16-46-04.png  "Bot Screen")
+![Alt text](screen.png  "Bot Screen")
 
 
 ## Configuration
