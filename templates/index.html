@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/style.css') }}">
+    <title>GPT Flask App</title>
+</head>
+<body>
+    <div class="container mt-5">
+
+        <div class="row">
+
+          <div class="col-md-6 mx-auto">
+            <img src="{{ url_for('static',filename='images/logo.png') }}" class="img-fluid mx-auto d-block" alt="logo" style="width: 200px; height: 200px;">
+            <h1 class="text-center"><span style="color: rgb(255, 0, 0);">C</span>hatBot Flask And OPENAI API</h1>
+            <div class="card" >
+              <div class="card-body" >
+                <div class="chat-container" id="chat-container"></div>
+                <form id="generate-form">
+                  <div class="form-group mt-3">
+                    <input type="text" class="form-control" id="prompt" name="prompt" placeholder="Enter a prompt or type /help...">
+                  </div>
+                  <button type="submit" class="btn btn-success mt-3">Send</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <div id="result"></div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.all.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+    $(document).ready(function() {
+  $("#generate-form").submit(function(event) {
+    event.preventDefault();
+    var prompt = $("#prompt").val();
+    var chatBubble;
+    if (prompt.startsWith("/clear")) {
+      $("#chat-container").empty();
+      chatBubble = '<div class="chat-bubble"><p class="user-prompt">' + prompt + '</p></div>';
+    } else if (prompt.startsWith("/help")) {
+      Swal.fire({
+        title: "Insctuctions",
+        html: "<strong>/clear</strong> : clear the chat history.<br> <strong>/help </strong>: show this message",
+        icon: "info",
+        confirmButtonText: "Got it!"
+      });
+      chatBubble = '<div class="chat-bubble"><p class="user-prompt">' + prompt + '</p></div>';
+    } else {
+      chatBubble = '<div class="chat-bubble"><p class="user-prompt">' + prompt + '</p></div>';
+      $("#chat-container").append(chatBubble);
+      $.post("/generate", {"prompt": prompt}, function(data) {
+        var generatedText = '<div class="card generated-text clean-color"><div class="card-body">' + data + '</div></div>';
+        $("#chat-container").append(generatedText);
+        $("#prompt").val(""); // Clear the input field
+        $("#chat-container").scrollTop($("#chat-container")[0].scrollHeight); // Scroll to the bottom of the chat container
+      });
+    }
+  });
+});
+
+
+    </script>
+</body>
+</html>
+
+
+
